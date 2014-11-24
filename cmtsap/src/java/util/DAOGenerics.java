@@ -115,10 +115,9 @@ public class DAOGenerics<T> {
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
-
-            Criteria criteria = sessao.createCriteria(Usuario.class);
-            criteria.addOrder(Order.asc("id"));
-            lista = criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+            Criteria crit = sessao.createCriteria(this.classe);
+            crit.addOrder(Order.asc("id"));
+            lista = crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
             transacao.commit();
         } catch (Exception e) {
             e.printStackTrace();

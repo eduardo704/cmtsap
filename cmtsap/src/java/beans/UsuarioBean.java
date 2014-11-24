@@ -33,7 +33,7 @@ public class UsuarioBean implements Serializable {
     private List<Usuario> listaUsuario;
 
     public List<Usuario> getListaUsuario() {
-        listaUsuario= new DAOGenerics<Usuario>().listar();
+        listaUsuario= new DAOGenerics<Usuario>(Usuario.class).listar();
         return listaUsuario;
     }
 
@@ -42,7 +42,7 @@ public class UsuarioBean implements Serializable {
     }
     public UsuarioBean() {
        usuario=new Usuario();
-       listaUsuario= new DAOGenerics<Usuario>().listar();
+       listaUsuario= new DAOGenerics<Usuario>(Usuario.class).listar();
     }
 
     public Usuario getUsuario() {
