@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
@@ -40,7 +41,9 @@ public class DAOGenerics<T> {
 
         boolean ok = false;
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            SessionFactory sf= HibernateUtil.getSessionFactory();
+            sessao=sf.openSession();
             transacao = sessao.beginTransaction();
 
             if (generics.getId() == 0) {
@@ -74,7 +77,7 @@ public class DAOGenerics<T> {
             e.printStackTrace();
             ok = false;
         } finally {
-            HibernateUtil.closeSessionFactory();
+            HibernateUtil.closeSessionFactory(sessao);
         } 
         return ok;
     }
@@ -98,7 +101,7 @@ public class DAOGenerics<T> {
             transacao.rollback();
             e.printStackTrace();
         } finally {
-            HibernateUtil.closeSessionFactory();
+            HibernateUtil.closeSessionFactory(sessao);
         } 
         return ok;
     }
@@ -490,7 +493,7 @@ public class DAOGenerics<T> {
             
             e.printStackTrace();
         } finally {
-            HibernateUtil.closeSessionFactory();
+            HibernateUtil.closeSessionFactory(sessao);
         }
         return resultado;
     }
@@ -513,7 +516,7 @@ public class DAOGenerics<T> {
             
             e.printStackTrace();
         } finally {
-            HibernateUtil.closeSessionFactory();
+            HibernateUtil.closeSessionFactory(sessao);
         }
         return resultado;
     }
@@ -534,7 +537,7 @@ public class DAOGenerics<T> {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            HibernateUtil.closeSessionFactory();
+            HibernateUtil.closeSessionFactory(sessao);
         }
         return resultado;
     }
@@ -560,7 +563,7 @@ public class DAOGenerics<T> {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            HibernateUtil.closeSessionFactory();
+            HibernateUtil.closeSessionFactory(sessao);
         }
         return existe;
     }
@@ -583,7 +586,7 @@ public class DAOGenerics<T> {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            HibernateUtil.closeSessionFactory();
+            HibernateUtil.closeSessionFactory(sessao);
         }
         return lista;
     }
@@ -606,7 +609,7 @@ public class DAOGenerics<T> {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            HibernateUtil.closeSessionFactory();
+            HibernateUtil.closeSessionFactory(sessao);
         }
         return lista;
     }
