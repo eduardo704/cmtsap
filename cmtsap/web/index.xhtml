@@ -9,66 +9,79 @@
     </h:head>
     <h:body style="text-align: center;">
         <div id="container"> 
-        <div style="width: 50%; padding-left: 40%; width: 25%">
-            <p:fieldset legend="Cadastro de Usuario" >
-                <h:form prependId="false" id="frusuario">
-                    <h:panelGrid columns="2" cellspacing="5">
-                        <h:column>
-                            <h:outputLabel value="ID" for="nmId"/>
-                        </h:column>
-                        <h:column>
-                            <p:inputText id="nmId" value="#{usuarioBean.usuario.id}" disabled="true"/>
-                        </h:column>
-                        <h:column>
-                            <h:outputLabel value="Nome" for="nmUsuario"/>
-                        </h:column>
+            <div style="padding-left: 40%; width: 30%">
+                <p:fieldset legend="Cadastro de Usuario" >
+                    <h:form prependId="false" id="frusuario">
+                        <h:panelGrid columns="2" cellspacing="5">
+                            <h:column>
+                                <h:outputLabel value="ID" for="nmId"/>
+                            </h:column>
+                            <h:column>
+                                <p:inputText id="nmId" value="#{usuarioBean.usuario.id}" disabled="true"/>
+                            </h:column>
+                            <h:column>
+                                <h:outputLabel value="Nome" for="nmUsuario"/>
+                            </h:column>
 
-                        <h:column>
-                            <p:inputText id="nmUsuario" value="#{usuarioBean.usuario.nome}"/>
-                        </h:column>
-                        <h:column>
-                            <h:outputLabel value="senha" for="nmSenha"/>
-                        </h:column>
+                            <h:column>
+                                <p:inputText id="nmUsuario" value="#{usuarioBean.usuario.nome}"/>
+                            </h:column>
+                            <h:column>
+                                <h:outputLabel value="senha" for="nmSenha"/>
+                            </h:column>
 
-                        <h:column>
-                            <p:inputText id="nmSenha" value="#{usuarioBean.usuario.senha}"/>
-                        </h:column>
+                            <h:column>
+                                <p:inputText id="nmSenha" value="#{usuarioBean.usuario.senha}"/>
+                            </h:column>
 
 
-                    </h:panelGrid>
-                    <br></br>
-                    <p:separator/>
-                    <br/>
+                        </h:panelGrid>
+                        <br></br>
+                        <p:separator/>
+                        <br/>
+                        <h:panelGrid>
+                        <h:outputText value="ROLES:" />
+                        <p:selectManyCheckbox id="roles" value="#{usuarioBean.listaRoleSelecionado}" layout="grid" columns="3">
+                            <f:selectItems value="#{usuarioBean.listaRole}" var="role" itemLabel="#{role.nome}" itemValue="#{role.nome}" />
+                        </p:selectManyCheckbox>
+                        </h:panelGrid>
 
-                    <h:panelGrid columns="2">
-                        <p:commandButton value="Salvar" actionListener="#{usuarioBean.salvar}" update=":fmtabela"/>
-                        <p:commandButton value="Novo" process="@this" actionListener="#{usuarioBean.novo}" update="frusuario" />
-                    </h:panelGrid>
-                </h:form>
+                        <br></br>
+                        <p:separator/>
+                        <br/>
 
-            </p:fieldset>
-        </div>
+                        <h:panelGrid columns="2">
+                            <p:commandButton value="Salvar" actionListener="#{usuarioBean.salvar}" update=":fmtabela, frusuario"/>
+                            <p:commandButton value="Novo" process="@this" actionListener="#{usuarioBean.novo}" update="frusuario" />
+                        </h:panelGrid>
+                    </h:form>
+
+                </p:fieldset>
+            </div>
             <div style="width: 65%;padding-left: 20%; padding-top: 25px">
                 <h:form id="fmtabela" prependId="false">
-                <p:dataTable id="tabela" var="usu" value="#{usuarioBean.listaUsuario}" >
-                    <p:column headerText="Id">
-                        <h:outputText value="#{usu.id}" />
-                    </p:column>
+                    <p:dataTable id="tabela" var="usu" value="#{usuarioBean.listaUsuario}" selectionMode="single" selection="#{usuarioBean.usuarioSelecionado}" rowKey="#{usu.id}" >
+                        <p:ajax event="rowSelect" listener="#{usuarioBean.onRowSelect}" update=":fmtabela, :frusuario" />
+                        <p:column headerText="Id">
+                            <h:outputText value="#{usu.id}" />
+                        </p:column>
 
-                    <p:column headerText="Nome">
-                        <h:outputText value="#{usu.nome}" />
-                    </p:column>
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{usu.nome}" /> 
+                        </p:column>
 
-                    <p:column headerText="Senha">
-                        <h:outputText value="#{usu.senha}" />
-                    </p:column>
+                        <p:column headerText="Senha">
+                            <h:outputText value="#{usu.senha}" />
+                        </p:column>
 
 
-                </p:dataTable>
-            </h:form>
+
+
+                    </p:dataTable>
+                </h:form>
+            </div>
+
         </div>
-            
-     </div>
     </h:body>
 
 

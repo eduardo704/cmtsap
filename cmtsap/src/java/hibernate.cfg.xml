@@ -15,5 +15,6 @@
         <property name="show_sql">true</property>
 
         <mapping class="pojos.Usuario"/>
+         <mapping class="pojos.Role"/>
     </session-factory>
 </hibernate-configuration>
