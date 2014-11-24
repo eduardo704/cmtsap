@@ -8,6 +8,7 @@ package beans;
 import java.beans.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -29,9 +30,10 @@ public class UsuarioBean implements Serializable {
 
     
     private Usuario usuario;
-    private ArrayList<Usuario> listaUsuario;
+    private List<Usuario> listaUsuario;
 
-    public ArrayList<Usuario> getListaUsuario() {
+    public List<Usuario> getListaUsuario() {
+        listaUsuario= new DAOGenerics<Usuario>().listar();
         return listaUsuario;
     }
 
@@ -40,7 +42,7 @@ public class UsuarioBean implements Serializable {
     }
     public UsuarioBean() {
        usuario=new Usuario();
-       listaUsuario=new ArrayList<Usuario>();
+       listaUsuario= new DAOGenerics<Usuario>().listar();
     }
 
     public Usuario getUsuario() {

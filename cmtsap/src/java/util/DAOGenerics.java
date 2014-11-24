@@ -22,6 +22,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import pojos.Usuario;
 
 public class DAOGenerics<T> {
 
@@ -66,7 +67,7 @@ public class DAOGenerics<T> {
         Transaction transacao = null;
         boolean ok = true;
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             sessao.delete(generics);
@@ -87,7 +88,7 @@ public class DAOGenerics<T> {
         Transaction transacao = null;
         boolean ok = false;
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
             Criteria criteria = sessao.createCriteria(this.classe);
             criteria.add(Restrictions.eq(campo, valor));
@@ -112,10 +113,10 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
-            Criteria criteria = sessao.createCriteria(this.classe);
+            Criteria criteria = sessao.createCriteria(Usuario.class);
             criteria.addOrder(Order.asc("id"));
             lista = criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
             transacao.commit();
@@ -132,7 +133,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -152,7 +153,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -175,7 +176,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -195,7 +196,7 @@ public class DAOGenerics<T> {
         List<T> lista = new ArrayList<T>();
         
         try{
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
             
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -217,7 +218,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -237,7 +238,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -257,7 +258,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -278,7 +279,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -298,7 +299,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -319,7 +320,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -345,7 +346,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -367,7 +368,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -393,7 +394,7 @@ public class DAOGenerics<T> {
 
        long registros = 0;
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -414,7 +415,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -434,7 +435,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);            
@@ -454,7 +455,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);            
@@ -481,7 +482,7 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -504,7 +505,7 @@ public class DAOGenerics<T> {
         T resultado = null;
         
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
             Criteria criteria = sessao.createCriteria(this.classe);
@@ -527,7 +528,7 @@ public class DAOGenerics<T> {
         T resultado = null;
 
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
             Criteria criteria = sessao.createCriteria(this.classe);
             criteria.add(Restrictions.eq("id", id));
@@ -549,7 +550,7 @@ public class DAOGenerics<T> {
 
         boolean existe = false;
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
             Criteria criteria = sessao.createCriteria(this.classe);
             criteria.add(Restrictions.eq(campo, valor).ignoreCase());
@@ -574,10 +575,10 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
             lista = sessao.createQuery("from " + tabela + " where " + campo + " = " + valor).list();
 
@@ -597,10 +598,10 @@ public class DAOGenerics<T> {
 
         List<T> lista = new ArrayList<T>();
         try {
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
-            sessao = HibernateUtil.getSessionFactory().getCurrentSession();
+            sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
             lista = sessao.createQuery("from " + tabela + " where " + campo + " = " + valor).list();
 
