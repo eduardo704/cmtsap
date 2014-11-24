@@ -61,10 +61,10 @@ public class UsuarioBean implements Serializable {
     public void salvar(){
         DAOGenerics dao=new DAOGenerics();
         dao.salvar(usuario);
-        new PersistFactory<Usuario>().persistGeneric(this.usuario);
+        //new PersistFactory<Usuario>().persistGeneric(this.usuario);
        // listaUsuario.add(usuario);
         
-        System.out.println("usuario salvo "+usuario.getNome());
+       // System.out.println("usuario salvo "+usuario.getNome());
         usuario=new Usuario();
        
     }

@@ -43,7 +43,6 @@ public class DAOGenerics<T> {
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             SessionFactory sf= HibernateUtil.getSessionFactory();
-            sessao=sf.openSession();
             transacao = sessao.beginTransaction();
 
             if (generics.getId() == 0) {
