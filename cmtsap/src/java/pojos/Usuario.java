@@ -6,9 +6,16 @@
 package pojos;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GeneratorType;
 import util.IGenerics;
@@ -23,9 +30,16 @@ public class Usuario implements Serializable, IGenerics {
     private static final long serialVersionUID = 1L;
     private String nome,senha;
     
+    
+    
     @Id
     @GeneratedValue
     private int id;
+    
+     @ManyToMany(fetch= FetchType.EAGER,cascade= CascadeType.PERSIST)
+    @JoinTable(name="usuario_role", joinColumns={@JoinColumn(name="usuario_id")}, 
+            inverseJoinColumns={@JoinColumn(name="role_id")})
+    private Set<Role> roles = new HashSet<Role>();
 
     public String getNome() {
         return nome;
@@ -64,6 +78,14 @@ public class Usuario implements Serializable, IGenerics {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override

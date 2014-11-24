@@ -74,7 +74,7 @@ public class UsuarioBean implements Serializable {
     public UsuarioBean() {
        usuario=new Usuario();
        listaUsuario= new DAOGenerics<Usuario>(Usuario.class).listar();
-        listaRole= new DAOGenerics<Role>(Role.class).listar();
+       listaRole= new DAOGenerics<Role>(Role.class).listar();
     }
 
     public Usuario getUsuario() {
