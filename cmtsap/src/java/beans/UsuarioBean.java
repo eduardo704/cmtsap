@@ -92,6 +92,7 @@ public class UsuarioBean implements Serializable {
 
     public void salvar(){
         DAOGenerics dao=new DAOGenerics();
+        usuario.setRoles(listaRoleSelecionado);
         dao.salvar(usuario);
         usuario=new Usuario();       
     }

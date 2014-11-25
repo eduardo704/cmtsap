@@ -121,7 +121,10 @@ public class DAOGenerics<T> {
             transacao.commit();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }finally {
+            sessao.close();
+            //HibernateUtil.closeSessionFactory(sessao);
+        } 
         return lista;
     }
     

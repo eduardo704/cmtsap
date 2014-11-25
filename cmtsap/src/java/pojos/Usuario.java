@@ -7,6 +7,7 @@ package pojos;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -39,7 +40,7 @@ public class Usuario implements Serializable, IGenerics {
      @ManyToMany(fetch= FetchType.EAGER,cascade= CascadeType.PERSIST)
     @JoinTable(name="usuario_role", joinColumns={@JoinColumn(name="usuario_id")}, 
             inverseJoinColumns={@JoinColumn(name="role_id")})
-    private Set<Role> roles = new HashSet<Role>();
+    private List<Role> roles;
 
     public String getNome() {
         return nome;
@@ -80,13 +81,15 @@ public class Usuario implements Serializable, IGenerics {
         this.id = id;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
+   
 
     @Override
     public int hashCode() {
