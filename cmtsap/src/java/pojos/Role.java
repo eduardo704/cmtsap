@@ -7,9 +7,13 @@ package pojos;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GeneratorType;
@@ -27,8 +31,18 @@ public class Role implements Serializable {
     @GeneratedValue
     private int id;
     
-    @ManyToMany
-    List<Usuario> usuario;
+     @ManyToMany(fetch= FetchType.EAGER, cascade= CascadeType.PERSIST)
+    @JoinTable(name="usuario_role", joinColumns={@JoinColumn(name="role_id")}, 
+            inverseJoinColumns={@JoinColumn(name="usuario_id")})
+    private List<Usuario> usuario;
+
+    public List<Usuario> getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(List<Usuario> usuario) {
+        this.usuario = usuario;
+    }
     
 
     public String getNome() {
@@ -45,14 +59,6 @@ public class Role implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public List<Usuario> getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(List<Usuario> usuario) {
-        this.usuario = usuario;
     }
 
 

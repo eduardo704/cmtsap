@@ -37,7 +37,7 @@ public class Usuario implements Serializable, IGenerics {
     @GeneratedValue
     private int id;
     
-     @ManyToMany(fetch= FetchType.EAGER,cascade= CascadeType.PERSIST)
+    @ManyToMany(fetch= FetchType.EAGER, cascade= CascadeType.PERSIST)
     @JoinTable(name="usuario_role", joinColumns={@JoinColumn(name="usuario_id")}, 
             inverseJoinColumns={@JoinColumn(name="role_id")})
     private List<Role> roles;

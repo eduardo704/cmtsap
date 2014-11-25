@@ -41,7 +41,7 @@
                         <br/>
                         <h:panelGrid>
                         <h:outputText value="ROLES:" />
-                        <p:selectManyCheckbox id="roles" value="#{usuarioBean.listaRoleSelecionado}" layout="grid" columns="3">
+                        <p:selectManyCheckbox id="roles" value="#{usuarioBean.usuario.roles}" layout="grid" columns="3">
                             <f:selectItems value="#{usuarioBean.listaRole}" var="role" itemLabel="#{role.nome}" itemValue="#{role.nome}" />
                         </p:selectManyCheckbox>
                         </h:panelGrid>

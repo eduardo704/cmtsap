@@ -45,7 +45,7 @@ public class DAOGenerics<T> {
             sessao = HibernateUtil.getSessionFactory().openSession();
             SessionFactory sf= HibernateUtil.getSessionFactory();
             transacao = sessao.beginTransaction();
-
+            Restrictions.ne("position.id", 1L);
             if (generics.getId() == 0) {
                 sessao.save(generics);
             } else {
@@ -55,6 +55,7 @@ public class DAOGenerics<T> {
             transacao.commit();
             ok = true;
         } catch (Exception e) {
+            
             transacao.rollback();
             e.printStackTrace();
         } 

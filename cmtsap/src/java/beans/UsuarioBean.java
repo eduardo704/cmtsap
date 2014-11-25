@@ -39,8 +39,7 @@ public class UsuarioBean implements Serializable {
     public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
         this.usuarioSelecionado = usuarioSelecionado;
     }
-    
-    private List<Role> listaRoleSelecionado;
+   
     private List<Role> listaRole;
     private Usuario usuarioSelecionado;
     private Usuario usuario;
@@ -52,13 +51,7 @@ public class UsuarioBean implements Serializable {
         return listaUsuario;
     }
 
-    public List<Role> getListaRoleSelecionado() {
-        return listaRoleSelecionado;
-    }
-
-    public void setListaRoleSelecionado(List<Role> listaRoleSelecionado) {
-        this.listaRoleSelecionado = listaRoleSelecionado;
-    }
+  
 
     public List<Role> getListaRole() {
         return listaRole;
@@ -92,7 +85,6 @@ public class UsuarioBean implements Serializable {
 
     public void salvar(){
         DAOGenerics dao=new DAOGenerics();
-        usuario.setRoles(listaRoleSelecionado);
         dao.salvar(usuario);
         usuario=new Usuario();       
     }
